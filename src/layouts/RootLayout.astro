@@ -17,7 +17,7 @@ const { title = "CZ Engineering" } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <Navbar />
+    <Navbar client:load />
     <slot />
   </body>
 </html>
