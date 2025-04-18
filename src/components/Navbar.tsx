@@ -1,11 +1,36 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { LayoutGridIcon, Menu } from "lucide-react";
+import { LayoutGridIcon } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 export default function Navbar() {
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 400) {
+        setIsSticky(true); // Add sticky class after scrolling 100px
+      } else {
+        setIsSticky(false); // Remove sticky class if not scrolled enough
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <header className="border-b shadow-md">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+    <header
+      className={`border-b shadow-md transition-all duration-500 ease-in-out ${
+        isSticky
+          ? "fixed top-0 left-0 w-full z-50 bg-white shadow-lg"
+          : "w-full"
+      }`}
+    >
+      <div className="container mx-auto flex h-22 items-center justify-between px-4">
         {/* Logo */}
         <div className="flex items-center space-x-2">
           <a href="/">
@@ -28,7 +53,7 @@ export default function Navbar() {
         {/* CTA and Icon */}
         <div className="flex items-center space-x-4">
           <a href="/contact-us">
-            <Button className="bg-blue-600 text-white hover:bg-blue-800 hover:cursor-pointer">
+            <Button className="bg-[#0D80CE] text-white hover:bg-blue-800 hover:cursor-pointer">
               Get In Touch
               <span className="ml-1">
                 <svg
@@ -65,7 +90,7 @@ export default function Navbar() {
                 <a href="/client-list">Client List</a>
                 <a href="/contact-us">Contact us</a>
                 <a href="/contact-us">
-                  <Button className="bg-blue-700 text-white hover:bg-blue-800 mt-4 hover:cursor-pointer">
+                  <Button className="bg-[#0D80CE] text-white hover:bg-blue-800 mt-4 hover:cursor-pointer">
                     Get In Touch
                   </Button>
                 </a>

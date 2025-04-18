@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ChevronLeft, ChevronLeftIcon, ChevronRight } from "lucide-react";
+import { ChevronLeftIcon, ChevronRight } from "lucide-react";
 
 const slides = [
   {
@@ -55,7 +55,7 @@ export default function Carousel() {
   const { title, subtitle, description, image } = slides[current];
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black text-white">
+    <div className="relative carousel w-full h-screen overflow-hidden bg-black text-white">
       <img
         src={image}
         alt="Slide Background"

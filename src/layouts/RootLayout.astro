@@ -1,6 +1,8 @@
 ---
 import Navbar from "@/components/Navbar";
 import "../styles/global.css";
+import Footer from "@/components/Footer";
+import { MailIcon, PhoneOutgoingIcon } from "lucide-react";
 
 interface Props {
   title?: string;
@@ -14,10 +16,33 @@ const { title = "CZ Engineering" } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
     <title>{title}</title>
   </head>
   <body>
+    <div
+      class="w-full bg-[#0D80CE] p-2 text-white flex items-center justify-center gap-4 border-b"
+    >
+      <div class="flex gap-2">
+        <MailIcon />
+        <a href="mailto:info@czengineering.net">info@czengineering.net</a>
+      </div>
+      <div class="flex gap-2">
+        <PhoneOutgoingIcon />
+        <a href="tel:+880-1729-426944">+880-1729-426944</a>
+      </div>
+    </div>
     <Navbar client:load />
     <slot />
+    <Footer />
   </body>
 </html>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
