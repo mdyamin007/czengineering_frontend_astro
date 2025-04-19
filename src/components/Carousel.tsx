@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ChevronLeftIcon, ChevronRight } from "lucide-react";
+import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 
 const slides = [
   {
@@ -78,23 +77,19 @@ export default function Carousel() {
       </div>
 
       {/* Navigation buttons */}
-      <div className="absolute top-1/2 right-1/8 transform -translate-y-1/2 z-30 flex flex-col space-y-2">
-        <Button
-          size="lg"
-          variant="secondary"
+      <div className="absolute top-1/2 right-1/8 transform -translate-y-1/2 z-30 flex flex-col space-y-4">
+        <button
           onClick={prevSlide}
-          className="bg-[#0D80CE] rounded-none"
+          className="bg-[#0D80CE] rounded-none p-4 cursor-pointer"
         >
-          <ChevronLeftIcon className="text-white" />
-        </Button>
-        <Button
-          size="lg"
-          variant="secondary"
+          <ArrowLeftIcon className="h-6 w-6 text-white" />
+        </button>
+        <button
           onClick={nextSlide}
-          className="bg-[#0D80CE] rounded-none"
+          className=" bg-[#0D80CE] rounded-none p-4 cursor-pointer"
         >
-          <ChevronRight className="text-white" />
-        </Button>
+          <ArrowRightIcon className="h-6 w-6 text-white" />
+        </button>
       </div>
     </div>
   );

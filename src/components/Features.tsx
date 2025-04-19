@@ -117,22 +117,20 @@ export default function FeaturesSection() {
           </span>
         ))}
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
         {features.map((feature, index) => (
           <Card
             key={index}
-            className="flex flex-col items-center text-center p-6 bg-gray-100 rounded-lg shadow-lg opacity-0"
+            className="flex flex-col items-center text-center p-12 bg-gray-100 rounded-lg shadow-lg opacity-0"
             ref={(el) => {
               featureRefs.current[index] = el;
             }}
           >
-            <div className="mb-6">
-              <feature.icon className="text-3xl text-[#0D80CE]" />
-            </div>
-            <h3 className="text-xl font-semibold text-[#0D80CE] mb-3">
+            <feature.icon className="h-8 w-8 text-[#0D80CE]" />
+            <h3 className="text-2xl font-semibold text-[#0D80CE] mb-3">
               {feature.title}
             </h3>
-            <p className="text-sm text-gray-600">{feature.description}</p>
+            <p className="text-base text-gray-600">{feature.description}</p>
           </Card>
         ))}
       </div>

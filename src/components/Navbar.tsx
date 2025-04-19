@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { LayoutGridIcon } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import gsap from "gsap";
 
 export default function Navbar() {
   const [isSticky, setIsSticky] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +18,16 @@ export default function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
+
+    if (!buttonRef.current) return;
+
+    gsap.to(buttonRef.current, {
+      x: 50,
+      duration: 0.6,
+      ease: "sine",
+      yoyo: true,
+      repeat: -1,
+    });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -53,7 +65,10 @@ export default function Navbar() {
         {/* CTA and Icon */}
         <div className="flex items-center space-x-4">
           <a href="/contact-us">
-            <Button className="bg-[#0D80CE] text-white hover:bg-blue-800 hover:cursor-pointer">
+            <Button
+              ref={buttonRef}
+              className="bg-[#0D80CE] text-white hover:bg-blue-800 hover:cursor-pointer"
+            >
               Get In Touch
               <span className="ml-1">
                 <svg
