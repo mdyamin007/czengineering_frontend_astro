@@ -3,10 +3,12 @@ import RootLayout from "@/layouts/RootLayout.astro";
 import Carousel from "@/components/Carousel";
 import FeaturesSection from "@/components/Features";
 import AuthorizedDistributorList from "@/components/AuthorizedDistributorList";
+import ProductList from "@/components/ProductList";
 ---
 
 <RootLayout title="Home - CZ Engineering">
   <Carousel client:visible />
   <FeaturesSection client:visible />
   <AuthorizedDistributorList client:visible />
+  <ProductList client:visible />
 </RootLayout>

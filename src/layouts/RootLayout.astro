@@ -24,14 +24,14 @@ const { title = "CZ Engineering" } = Astro.props;
   </head>
   <body>
     <div
-      class="w-full bg-[#0D80CE] p-2 text-white flex items-center justify-center gap-4 border-b"
+      class="w-full bg-[#0D80CE] p-1 md:p-2 text-white flex items-center justify-center gap-4 border-b"
     >
-      <div class="flex gap-2">
-        <MailIcon />
+      <div class="flex gap-2 text-sm md:text-base items-center">
+        <MailIcon className="w-4 h-4" />
         <a href="mailto:info@czengineering.net">info@czengineering.net</a>
       </div>
-      <div class="flex gap-2">
-        <PhoneOutgoingIcon />
+      <div class="flex gap-2 text-sm md:text-base items-center">
+        <PhoneOutgoingIcon className="w-4 h-4" />
         <a href="tel:+880-1729-426944">+880-1729-426944</a>
       </div>
     </div>

@@ -16,7 +16,7 @@ export default function AuthorizedDistributorList() {
   }, []);
 
   return (
-    <div className="flex justify-center items-center gap-12 py-8 mb-20">
+    <div className="flex justify-center items-center gap-12 py-8">
       <div
         ref={(el) => {
           imageRefs.current[0] = el;

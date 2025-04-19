@@ -53,11 +53,15 @@ export default function FeaturesSection() {
   useEffect(() => {
     // ScrollTrigger to animate feature cards when they come into view
     gsap.utils.toArray(featureRefs.current).forEach((card, index) => {
+      if (!card) return;
+
+      // Set initial state using gsap.set
+      gsap.set(card, { opacity: 0, y: 50 });
+
       ScrollTrigger.create({
         trigger: card as HTMLDivElement,
         start: "top 80%", // Trigger when the card is 80% visible from the top
-        end: "top 20%", // End when it's 20% visible
-        toggleActions: "play none none none", // Play animation on entering the viewport
+        once: true, // Only trigger once
         onEnter: () => {
           gsap.fromTo(
             card as HTMLDivElement,
