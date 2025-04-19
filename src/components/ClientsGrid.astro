@@ -1,0 +1,52 @@
+---
+interface Client {
+  name: string;
+
+  logo: {
+    url: string;
+
+    alternativeText: string;
+  };
+}
+
+const res = await fetch(
+  "http://localhost:1337/api/clients?populate[logo][fields][0]=url&&populate[logo][fields][1]=alternativeText"
+);
+const data = await res.json();
+const clients = data.data;
+---
+
+<section class="bg-white py-20 mb-20">
+  <div
+    class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 items-center"
+  >
+    <div class="md:col-span-2 space-y-4">
+      <h2 class="text-4xl font-bold text-primary font-space-grotesk">
+        Our clients and partners
+      </h2>
+      <p class="text-muted-foreground text-lg">
+        A list of our valued clients we have worked so far
+      </p>
+    </div>
+
+    <div
+      class="md:col-span-3 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6"
+    >
+      {
+        clients &&
+          clients.slice(0, 8).map((client: Client, index: number) => (
+            <div
+              data-key={index}
+              class="flex items-center justify-center bg-muted p-6 h-32 shadow-md hover:shadow-lg transition-shadow duration-300"
+            >
+              <img
+                src={`http://localhost:1337${client.logo.url}`}
+                alt={client.logo.alternativeText || client.name}
+                class="object-contain max-h-full max-w-full"
+              />
+            </div>
+          ))
+      }
+    </div>
+  </div>
+</section>

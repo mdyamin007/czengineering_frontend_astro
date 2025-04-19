@@ -39,7 +39,7 @@ export default function Navbar() {
         </div>
 
         {/* Navigation */}
-        <nav className="hidden md:flex items-center space-x-6 text-sm text-muted-foreground">
+        <nav className="hidden md:flex items-center space-x-6 text-base text-muted-foreground">
           <a href="/" className="text-primary font-medium">
             Home
           </a>

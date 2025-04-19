@@ -4,6 +4,7 @@ import Carousel from "@/components/Carousel";
 import FeaturesSection from "@/components/Features";
 import AuthorizedDistributorList from "@/components/AuthorizedDistributorList";
 import ProductList from "@/components/ProductList";
+import ClientsGrid from "@/components/ClientsGrid.astro";
 ---
 
 <RootLayout title="Home - CZ Engineering">
@@ -11,4 +12,5 @@ import ProductList from "@/components/ProductList";
   <FeaturesSection client:visible />
   <AuthorizedDistributorList client:visible />
   <ProductList client:visible />
+  <ClientsGrid />
 </RootLayout>
