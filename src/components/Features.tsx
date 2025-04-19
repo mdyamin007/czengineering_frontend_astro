@@ -46,6 +46,9 @@ const features = [
   },
 ];
 
+const paragraphText =
+  "CZ Engineering is a one of the prominent Power & Electric company in Bangladesh. CZ specialize in Industrial Engineering, Automation Solution & Industrial Maintenance. We are also one of the leading supplier of industrial products from OEM market. We are committed to contributing in the development of the nations and personal growth as a successful organization.";
+
 export default function FeaturesSection() {
   const featureRefs = useRef<(HTMLDivElement | null)[]>([]);
   const textRef = useRef<HTMLParagraphElement>(null);
@@ -54,9 +57,6 @@ export default function FeaturesSection() {
     // ScrollTrigger to animate feature cards when they come into view
     gsap.utils.toArray(featureRefs.current).forEach((card, index) => {
       if (!card) return;
-
-      // Set initial state using gsap.set
-      gsap.set(card, { opacity: 0, y: 50 });
 
       ScrollTrigger.create({
         trigger: card as HTMLDivElement,
@@ -78,18 +78,27 @@ export default function FeaturesSection() {
       });
     });
 
-    // Split text into individual characters (wrapped in <span>)
+    // Animate paragraph text
     const text = textRef.current;
     if (!text) return;
-    const characters = text.innerText.split("");
-    text.innerHTML = characters.map((char) => `<span>${char}</span>`).join("");
 
-    // GSAP animation for the characters
-    gsap.fromTo(
-      text.querySelectorAll("span"),
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, stagger: 0.01, duration: 1, ease: "power3.out" }
-    );
+    const spans = text.querySelectorAll("span");
+
+    ScrollTrigger.create({
+      trigger: text,
+      start: "top 80%",
+      once: true,
+      onEnter: () => {
+        text.style.visibility = "visible";
+        gsap.to(spans, {
+          opacity: 1,
+          y: 0,
+          stagger: 0.01,
+          duration: 1,
+          ease: "power3.out",
+        });
+      },
+    });
   }, []);
 
   return (
@@ -97,19 +106,22 @@ export default function FeaturesSection() {
       <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
         About CZ Engineering
       </h2>
-      <p className="text-center text-gray-600 mb-32" ref={textRef}>
-        CZ Engineering is a one of the prominent Power & Electric company in
-        Bangladesh. CZ specialize in Industrial Engineering, Automation Solution
-        & Industrial Maintenance. We are also one of the leading supplier of
-        industrial products from OEM market. We are committed to contributing in
-        the development of the nations and personal growth as a successful
-        organization.
+      <p
+        className="text-center text-gray-600 mb-32"
+        ref={textRef}
+        style={{ visibility: "hidden" }}
+      >
+        {paragraphText.split("").map((char, i) => (
+          <span key={i} style={{ opacity: 0, display: "inline-block" }}>
+            {char === " " ? "\u00A0" : char}
+          </span>
+        ))}
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {features.map((feature, index) => (
           <Card
             key={index}
-            className="flex flex-col items-center text-center p-6 bg-gray-100 rounded-lg shadow-lg"
+            className="flex flex-col items-center text-center p-6 bg-gray-100 rounded-lg shadow-lg opacity-0"
             ref={(el) => {
               featureRefs.current[index] = el;
             }}
