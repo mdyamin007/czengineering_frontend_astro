@@ -38,7 +38,7 @@ export default function ProductList() {
 
       gsap.to(wrapperRef.current, {
         x: `-${totalWidth / 2}px`,
-        duration: 20,
+        duration: 10,
         repeat: -1,
         ease: "linear",
       });
@@ -54,12 +54,12 @@ export default function ProductList() {
               <TooltipTrigger asChild>
                 <a
                   href={`/products/${product.slug}`}
-                  className="flex items-center space-x-4 min-w-[200px] cursor-pointer"
+                  className="flex flex-col justify-center items-center space-x-4 min-w-[200px] cursor-pointer"
                 >
                   <img
                     src={`http://localhost:1337${product.logo}`}
                     alt={product.name}
-                    className="w-16 h-16 object-contain"
+                    className="w-32 h-32 object-contain"
                   />
                   <span className="text-lg font-semibold">{product.name}</span>
                 </a>
